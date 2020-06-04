@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\e2e",
-    "\\src"
+    "\\e2e\\src",
+    "\\src",
+    "\\src\\app"
   ],
-  "SelectedNode": "\\angular.json",
+  "SelectedNode": "\\src\\app\\Events-app.component.ts",
   "PreviewInSolutionExplorer": false
 }

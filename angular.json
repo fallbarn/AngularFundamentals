@@ -15,6 +15,7 @@
           "options": {
             "outputPath": "dist/ng-fundamentals",
             "index": "src/index.html",
+            //sle note: starting point. Points to Main.ts file (classic point of entry ?)
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
