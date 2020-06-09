@@ -13,4 +13,5 @@ import { EventsAppComponent } from './Events-app.component';
   providers: [],
   bootstrap: [EventsAppComponent]
 })
-export class EventsAppModule { }
+// sle note: AppModule can't be renamed.
+export class AppModule { }
