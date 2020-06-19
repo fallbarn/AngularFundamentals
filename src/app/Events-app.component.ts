@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'Events-app',
   template: `
       <nav-bar></nav-bar>
-      //<Events-list></Events-list> sle note: pre-routing form.
+      <!--<Events-list></Events-list> sle note: pre-routing form.-->
       <router-outlet></router-outlet>
             `
 })
