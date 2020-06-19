@@ -5,8 +5,7 @@ import {ToastrService} from '../common/toastr.service';
 
 // The class decorator. Defines how the class integrates with html and child component.
 @Component({
-  // sle note: new module, linked to previous module
-  selector: 'Events-list',
+  // selector: 'Events-list', replace by router. Previously linked ot Events-app.component
 
   // This is the HTLM associated with the component.
   template: `
