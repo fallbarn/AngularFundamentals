@@ -3,16 +3,14 @@ import { Component, Input } from '@angular/core';
 
 @Component({
 
-    // sle note: class and inline style methods
-                //<div [ngClass] = "getStartTimeClass()" [ngSwitch]="event?.time">
-                //  Time: {{event?.time}}
-                //  <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
-                //  <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
-                //  <span *ngSwitchDefault>(Normal Start)</span>
-                //</div>
   selector: 'event-thumbnail',
+  // sle note: the [routerLink] sets /event/[event.id] as the url. e.g: -
+  /*
+   *  <a href="#test1" id="back">Test</a>
+      <div id="test1" onclick="window.location.hash='back'; ">
+   */
   template: `
-              <div class="well hoverwell thumbnail">
+              <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
                 <h2> {{event?.name}} </h2>
                 <div>Date: {{event?.date}} </div>
 

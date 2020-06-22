@@ -10,6 +10,9 @@ import { EventDetailsComponent } from './events/event-details/event-details.comp
 import { EventsListComponent } from './events/events-list.component';
 import { appRoutes} from './routes'
 import { RouterModule } from '@angular/router';
+import { CreateEventComponent } from './events/create-event.component'
+import { Error404Component } from './errors/404.component'
+import { EventRouteActivator } from './events/event-details/event-route.activator.service'
 
 
 @NgModule({
@@ -18,15 +21,31 @@ import { RouterModule } from '@angular/router';
     EventsListComponent,
     EventsThumbnailComponent,
     NavBarComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    CreateEventComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
   // SLE NOTE: setup for dependency injection. can be referenced in a constructor.
-  providers: [EventService, ToastrService],
+  providers: [
+    EventService,
+    ToastrService,
+    EventRouteActivator,
+    {
+      provide: 'canDeactivateCreateEvent',
+      useValue: checkDirtyState
+    }
+
+
+  ],
   bootstrap: [EventsAppComponent]
 })
 // sle note: AppModule can't be renamed.
 export class AppModule { }
+
+export function checkDirtyState(): boolean {
+  return false
+}
