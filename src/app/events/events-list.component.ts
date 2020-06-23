@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/event-services';
-import {ToastrService} from '../common/toastr.service';
+import { ToastrService } from '../common/toastr.service';
+import { ActivatedRoute } from '@angular/router'
 
 
 // The class decorator. Defines how the class integrates with html and child component.
@@ -23,8 +24,8 @@ import {ToastrService} from '../common/toastr.service';
 
 // SLE note: the attributes and methods of EventsList class
 export class EventsListComponent implements OnInit { // OnInit is an interface.
-  events: any[];
-  constructor(private eventService: EventService, private toastr: ToastrService) {
+  events: any;
+  constructor(private eventService: EventService, private toastr: ToastrService, private route: ActivatedRoute) {
     // note: not good practice to call in constructor
     //  should be done in 'livecycle event' ngOnInit, see below...
     //this.events = this.eventService.getEvents();
@@ -33,7 +34,10 @@ export class EventsListComponent implements OnInit { // OnInit is an interface.
   // Implements the OnInit interface.
   ngOnInit() {
     // SLE note: suspect this is analogous  to OnLoad() event in asp.net.
-    this.events = this.eventService.getEvents();
+    // 1st this.events = this.eventService.getEvents();
+    // 2nd this.events = this.eventService.getEvents().subscribe((events) => {this.events = events})
+    // 3rd. Gets the events from the resolver that is wired up in routes.ts.
+    this.events = this.route.snapshot.data['events'];
   }
 
   handleThumbnailClick(eventName) {

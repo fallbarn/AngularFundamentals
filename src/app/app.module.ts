@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { CreateEventComponent } from './events/create-event.component'
 import { Error404Component } from './errors/404.component'
 import { EventRouteActivator } from './events/event-details/event-route.activator.service'
+import { EventListResolver}from './events/events-list.resolver'
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { EventRouteActivator } from './events/event-details/event-route.activato
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
-    }
+    },
+    EventListResolver
 
 
   ],
@@ -46,6 +48,11 @@ import { EventRouteActivator } from './events/event-details/event-route.activato
 // sle note: AppModule can't be renamed.
 export class AppModule { }
 
-export function checkDirtyState(): boolean {
-  return false
+// sle note: it would appear, angular can look for and inject into local function calls classes from the declarations section.
+export function checkDirtyState(eventComponent: CreateEventComponent): boolean {
+
+  if (eventComponent.isDirty)
+    return window.confirm("You have not saved this event, do you really want to cancel?")
+
+  return true
 }
