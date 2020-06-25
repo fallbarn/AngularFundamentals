@@ -6,7 +6,7 @@ export class EventService {
   //constructor(private http: HTTP) {}
   getEvents() {
     let subject = new Subject();
-    setTimeout(() => { subject.next(events); subject.complete(); }, 4000);
+    setTimeout(() => { subject.next(events); subject.complete(); }, 200);
     return subject;
   }
 

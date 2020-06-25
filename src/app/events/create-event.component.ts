@@ -9,8 +9,8 @@ import { Router } from '@angular/router'
         <h3> [Create Event Form will go here] </h3>
         <br/>
         <br/>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-default" (click) = "cancel()">Cancel</button>
+        <button type="submit" class="btn btn-primary" (click) = "save()" >Save</button>
+        <button type="button" class="btn btn-default" (click) = "cancel()" >Cancel</button>
       </div>`
 })
 
@@ -21,6 +21,11 @@ export class CreateEventComponent {
 
   cancel()
   {
+    this.router.navigate(["events"])
+  }
+
+  save() {
+    this.isDirty = false;
     this.router.navigate(["events"])
   }
 
