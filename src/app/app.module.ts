@@ -7,7 +7,7 @@ import { Error404Component } from './errors/404.component'
 import { RouterModule } from '@angular/router';
 import { ToastrService } from './common/toastr.service';
 import { EventsAppComponent } from './Events-app.component';
-import {AuthService} from './user/auth.service'
+import { AuthService} from './user/auth.service'
 
 import {
   EventsThumbnailComponent,

@@ -25,6 +25,7 @@
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
           <li>
+            <!-- sle note: nav bar async-auto picks up changes made to the auth service else where in app -->
             <a *ngIf="!auth.isAuthenticated()" [routerLink]="['user/login']">Login</a>
             <a *ngIf="auth.isAuthenticated()" [routerLink] ="['user/profile']">Welcome: {{auth.currentUser.firstName}}</a>
           </li>
