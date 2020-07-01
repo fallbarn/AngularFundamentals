@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from './shared/event-services';
 import { ToastrService } from '../common/toastr.service';
 import { ActivatedRoute } from '@angular/router'
+import { IEvent } from './shared';
 
 
 // The class decorator. Defines how the class integrates with html and child component.
@@ -24,7 +25,7 @@ import { ActivatedRoute } from '@angular/router'
 
 // SLE note: the attributes and methods of EventsList class
 export class EventsListComponent implements OnInit { // OnInit is an interface.
-  events: any;
+  events: IEvent;
   constructor(private eventService: EventService, private toastr: ToastrService, private route: ActivatedRoute) {
     // note: not good practice to call in constructor
     //  should be done in 'livecycle event' ngOnInit, see below...

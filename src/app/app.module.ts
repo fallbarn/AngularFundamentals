@@ -7,6 +7,7 @@ import { Error404Component } from './errors/404.component'
 import { RouterModule } from '@angular/router';
 import { ToastrService } from './common/toastr.service';
 import { EventsAppComponent } from './Events-app.component';
+import {AuthService} from './user/auth.service'
 
 import {
   EventsThumbnailComponent,
@@ -32,11 +33,12 @@ import {
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  // SLE NOTE: setup for dependency injection. can be referenced in a constructor.
+  // SLE NOTE: setup for dependency injection, so can be referenced in constructor.
   providers: [
     EventService,
     ToastrService,
     EventRouteActivator,
+    AuthService,
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState

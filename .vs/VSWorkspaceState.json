@@ -4,8 +4,10 @@
     "\\e2e",
     "\\e2e\\src",
     "\\src",
-    "\\src\\app"
+    "\\src\\app",
+    "\\src\\app\\events",
+    "\\src\\app\\events\\event-details"
   ],
-  "SelectedNode": "\\src\\main.ts",
+  "SelectedNode": "\\src\\app\\events\\events-list.component.ts",
   "PreviewInSolutionExplorer": false
 }
