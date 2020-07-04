@@ -4,10 +4,15 @@ import { Router } from '@angular/router'
 
 @Component({
   templateUrl: './login.component.html',
-
-  styles: [`
-    em { float:right; color:#05C65}
-  `]
+  styles: [
+    `
+      em {float:right; color#E05C65; padding-left; 10px;}
+      .error input {background-color:#E05C65; }
+      .error ::-webkit-input-placeholder { color#999; }
+      .error ::-moz-placeholder { color#999; }
+      .error ::-moz-placeholder { color#999; }
+      .error ::ms-input-placeholder { color#999; }
+    `]
 })
 
 export class LoginComponent {
