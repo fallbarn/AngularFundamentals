@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import {IUser} from './user.model'
+import {IUser, User} from './user.model'
 
 @Injectable()
 export class AuthService {
 
   // sle note: fake value for now-on.
-  public currentUser: IUser;
+  public currentUser: User;
+
 
   loginUser(userName: string, password: string) {
-    this.currentUser = {
-      id: 1,
-      userName: userName,
-      firstName: 'John',
-      lastName: 'Papa'
-    }
+   
+    this.currentUser = new User(1, userName, 'John', 'Papa');
+
   }
 
   isAuthenticated() {

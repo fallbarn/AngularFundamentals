@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule} from '@angular/forms';
 import { NavBarComponent } from './nav//navbar.component';
 import { appRoutes } from './routes'
 import { Error404Component } from './errors/404.component'
 import { RouterModule } from '@angular/router';
 import { ToastrService } from './common/toastr.service';
 import { EventsAppComponent } from './Events-app.component';
-import { AuthService} from './user/auth.service'
+import { AuthService } from './user/auth.service';
 
 import {
   EventsThumbnailComponent,
@@ -16,7 +16,7 @@ import {
   EventsListComponent,
   CreateEventComponent,
   EventRouteActivator,
-  EventListResolver,
+  EventListResolver
 } from './events/index'
 
 @NgModule({
@@ -31,7 +31,8 @@ import {
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   // SLE NOTE: setup for dependency injection, so can be referenced in constructor.
   providers: [

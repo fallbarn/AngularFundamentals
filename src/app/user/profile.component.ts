@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router'
+import { IUser } from './user.model';
 
 /*
  * sle note: Authodox html (with css selector) styling 
@@ -28,11 +29,12 @@ import { Router } from '@angular/router'
 export class ProfileComponent implements OnInit
 {
   private profileForm : FormGroup;
-  private firstName : FormControl;
-  private lastName : FormControl;
+  private firstNameCtr : FormControl;
+  private lastNameCtr: FormControl;
+  private user: IUser;
 
   // sle note: using local variable here, instead of short hand privates in constructor. Must prepend with 'this.' in code
-  authService: AuthService;
+  public authService: AuthService;
   router: Router;
 
   constructor(authService: AuthService, router: Router) {
@@ -40,12 +42,14 @@ export class ProfileComponent implements OnInit
     this.router = router;
   }
 
-  // Angualar binds the following with the [formGroup]="profileForm" in the HTLM
-  ngOnInit() {
-    this.firstName = new FormControl(this.authService.currentUser.firstName, Validators.required);
-    this.lastName = new FormControl(this.authService.currentUser.lastName, Validators.required);
+    // Angualar binds the following with the [formGroup]="profileForm" in the HTLM
+    ngOnInit() {
+      this.user = this.authService.currentUser;
 
-    this.profileForm = new FormGroup({ firstName: this.firstName, lastName: this.lastName });
+      this.firstNameCtr = new FormControl(this.user.firstName, [Validators.required, Validators.pattern('[A-Za-z].*')]);
+      this.lastNameCtr = new FormControl(this.user.lastName, [Validators.required, Validators.pattern('[A-Za-z].*')]);
+      
+      this.profileForm = new FormGroup({ firstName: this.firstNameCtr, lastName: this.lastNameCtr });
   }
 
   Cancel() {
@@ -55,18 +59,18 @@ export class ProfileComponent implements OnInit
   SaveProfile(formValues) {
     if (this.profileForm.valid) {
       // sle note: must your explicit this.firstName.value, when declaring explicit types.
-      this.authService.UpdateCurrentUser(this.firstName.value, this.lastName.value);
+      this.authService.UpdateCurrentUser(this.firstNameCtr.value, this.lastNameCtr.value);
       this.router.navigate(['events']);
     }
   }
 
   validateFirstName() {
-    return this.firstName.valid || this.firstName.untouched
+    return this.firstNameCtr.valid || this.firstNameCtr.untouched
   }
 
 
   validateLastName() {
-    return this.lastName.valid || this.lastName.untouched
+    return this.lastNameCtr.valid || this.lastNameCtr.untouched
   }
 
 }
