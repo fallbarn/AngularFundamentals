@@ -7,7 +7,7 @@ import { IEvent } from './shared';
 
 // The class decorator. Defines how the class integrates with html and child component.
 @Component({
-  // selector: 'Events-list', replace by router. Previously linked ot Events-app.component
+  // selector: 'Events-list', replace by router. Previously linked to Events-app.component
 
   // This is the HTLM associated with the component.
   template: `

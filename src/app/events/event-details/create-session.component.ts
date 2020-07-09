@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators,  } from '@angular/forms'
 //import { AuthService } from './auth.service';
 import { Router } from '@angular/router'
-import { ISession } from './shared/event.model';
+import { ISession } from '../shared/event.model';
 
 /*
  * sle note: Authodox html (with css selector) styling 
@@ -98,13 +98,5 @@ export class CreateSessionComponent implements OnInit {
     console.log(session)
   }
 
-  validateFirstName() {
-    //return this.firstNameCtr.valid || this.firstNameCtr.untouched
-  }
-
-
-  validateLastName() {
-    //return this.lastNameCtr.valid || this.lastNameCtr.untouched
-  }
-
+ 
 }

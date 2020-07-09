@@ -23,6 +23,7 @@
   </div>
 
   <hr />
-
-  <session-list>[sessions]="event?.sessions"</session-list>
+  <!-- sle note: wasted time here with: [sessions]="event?.sessions" on wrong side of '>' -->
+  <session-list [sessions]="event?.sessions"></session-list>
+  
 </div>
