@@ -40,10 +40,12 @@
     </div>
 
 
-    <div class="form-group" [ngClass]="{'error': abstract?.invalid && abstract?.dirty && abstract.errors?.maxlength}">
+    <div class="form-group" [ngClass]="{'error': abstract?.invalid && abstract?.dirty && abstract.errors?.maxlength && abstract.errors.restrictedWords}">
       <label for="abstract">Abstract:</label>
       <em *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.required">Required</em>
       <em *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.maxlength">Cannot exceed 400 char</em>
+      <em *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.maxlength && abstract.errors.restrictedWords">Restrictive words found</em>
+
       <textarea formControlName="abstract" id="abstract" rows=3 class="form-control" placeholder="abstract..."></textarea>
     </div>
 

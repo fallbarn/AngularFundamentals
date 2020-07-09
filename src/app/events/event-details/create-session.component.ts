@@ -53,7 +53,7 @@ export class CreateSessionComponent implements OnInit {
     this.presenter = new FormControl('', [Validators.required]);
     this.duration = new FormControl('', [Validators.required]);
     this.level = new FormControl('', [Validators.required]);
-    this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400)]);
+    this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), this.restrictedWords]);
 
     this.newSessionForm = new FormGroup(
       {
@@ -66,13 +66,21 @@ export class CreateSessionComponent implements OnInit {
 
     }
 
+  private restrictedWords() {
+    return (control: FormControl): { [key: string]: any } => {
+
+      return control.value.includes('foo') ? { 'restrictedWords': 'foo' } : null;
+    }
+  }
+
+
   Cancel() {
     this.router.navigate(['events']);
   }
 
   saveSession(formValues) {
     //if (this.profileForm.valid) {
-    //  // sle note: must your explicit this.firstName.value, when declaring explicit types.
+    //  sle note: must your explicit this.firstName.value, when declaring explicit types.
     //  this.authService.UpdateCurrentUser(this.firstNameCtr.value, this.lastNameCtr.value);
     //  this.router.navigate(['events']);
     //}
@@ -87,7 +95,7 @@ export class CreateSessionComponent implements OnInit {
       voters: []
 
     }
-    console.log(formValues)
+    console.log(session)
   }
 
   validateFirstName() {
