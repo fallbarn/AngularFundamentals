@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
 import { FormGroup, FormControl, Validators,  } from '@angular/forms'
 //import { AuthService } from './auth.service';
 import { Router } from '@angular/router'
@@ -14,6 +14,7 @@ import { ISession } from '../shared/event.model';
  */
 
 @Component({
+  selector: 'create-session',
   templateUrl: './create-session.component.html',
   styles: [
     `
@@ -27,6 +28,9 @@ import { ISession } from '../shared/event.model';
 })
 
 export class CreateSessionComponent implements OnInit {
+
+  @Output() saveNewSession = new EventEmitter();
+  @Output() cancelSession = new EventEmitter();
 
   public name: FormControl;
   public presenter: FormControl;
@@ -42,10 +46,6 @@ export class CreateSessionComponent implements OnInit {
   constructor(router: Router) {
     this.router = router;
   }
-
-  
-
-  
 
   // Angualar binds the following with the [formGroup]="newSessionForm" in the HTLM
   ngOnInit() {
@@ -73,15 +73,10 @@ export class CreateSessionComponent implements OnInit {
     }
   }
 
-
-  Cancel() {
-    this.router.navigate(['events']);
-  }
-
   saveSession(formValues) {
     //if (this.profileForm.valid) {
-    //  sle note: must your explicit this.firstName.value, when declaring explicit types.
-    //  this.authService.UpdateCurrentUser(this.firstNameCtr.value, this.lastNameCtr.value);
+    //  sle note: you must use explicitly this.firstName.value, when declaring explicit types.
+    //  this.authService.UpdateCurrentUser(this.firstName.value, this.lastName.value);
     //  this.router.navigate(['events']);
     //}
 
@@ -95,8 +90,20 @@ export class CreateSessionComponent implements OnInit {
       voters: []
 
     }
-    console.log(session)
+    //console.log(session)
+    /*
+     * This is caught by the calling
+     *
+     * <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" ></create-session>
+     * 
+     * in event-details.component.html
+     */
+    this.saveNewSession.emit(session);
   }
 
+  cancel() {
+    this.cancelSession.emit();
+   // this.router.navigate(['events']);
+  }
  
 }

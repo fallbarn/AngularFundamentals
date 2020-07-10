@@ -7,23 +7,27 @@ export class EventService {
   //constructor(private http: HTTP) {}
   getEvents(): Observable<IEvent[]> {
     let subject = new Subject <IEvent[]>();
-    setTimeout(() => { subject.next(events); subject.complete(); }, 200);
+    setTimeout(() => { subject.next(EVENTS); subject.complete(); }, 200);
     return subject;
   }
 
   getEvent(id: number): IEvent{
-    return events.find(event=> event.id === id)
+    return EVENTS.find(event=> event.id === id)
   }
 
   saveEvent(event) {
     event.id = 999;
     event.session = []
-    events.push(event)
+    EVENTS.push(event)
+  }
 
+  updateEvent(event) {
+    let index = EVENTS.findIndex(x => x.id = event.id);
+    EVENTS[index] = event;
   }
 }
 
-const events: IEvent[] = [
+const EVENTS: IEvent[] = [
   {
     id: 1,
     name: 'Angular Connect',

@@ -23,7 +23,24 @@
   </div>
 
   <hr />
+
+  <div class="row">
+    <div class="col-md-2">
+      <h3 style="margin:0">Sessions</h3>
+    </div>
+
+    <div class="col-md-2">
+      <a (click)="addSession()">Add Session</a>
+    </div>
+  </div>
+
+  <hr />
+  <!-- sle note: here, 'session-list' is the 'selector' of the required component-->
   <!-- sle note: wasted time here with: [sessions]="event?.sessions" on wrong side of '>' -->
-  <session-list [sessions]="event?.sessions"></session-list>
-  
+  <session-list *ngIf="!addMode" [sessions]="event?.sessions"></session-list>
+
+  <!-- sle note: here, 'create-session' is the 'selector' of the required component-->
+  <create-session *ngIf="addMode" (saveNewSession)="saveNewSession($event)" (cancelSession)="cancelNewSession()"></create-session>
+
+
 </div>
