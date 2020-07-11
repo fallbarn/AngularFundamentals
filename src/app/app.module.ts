@@ -6,6 +6,7 @@ import { appRoutes } from './routes'
 import { Error404Component } from './errors/404.component'
 import { RouterModule } from '@angular/router';
 import { ToastrService } from './common/toastr.service';
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { EventsAppComponent } from './Events-app.component';
 import { AuthService } from './user/auth.service';
 
@@ -32,7 +33,8 @@ import {
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleWellComponent
   ],
   imports: [
     BrowserModule,
