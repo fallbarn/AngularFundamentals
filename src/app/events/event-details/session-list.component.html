@@ -1,10 +1,20 @@
 <div class="row" *ngFor="let session of sessions">
+
     <!-- sle note: [title] wires to an @Input-->
-    <collapsible-well [title]="session.name" class="col-md-10">
+  <collapsible-well class="col-md-10">
+    <!-- sle note: the below html is projected into...-->
+    <div well-title>
+      {{session.name}}
+      <i *ngIf="session.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
+    </div>
+
+    <div well-body>
       <!-- this content is now projected into the collapsible-well module-->
       <h6>{{session.presenter}}</h6>
       <span>Duration: {{session.duration}}</span><br />
       <span>Level: {{session.level}}</span>
       <p>{{session.abstract}}</p>
-    </collapsible-well>
+    </div>
+
+  </collapsible-well>
 </div>
