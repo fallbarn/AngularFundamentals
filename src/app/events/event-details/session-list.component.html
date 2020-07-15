@@ -1,4 +1,4 @@
-<div class="row" *ngFor="let session of sessions">
+<div class="row" *ngFor="let session of visibleSessions">
 
     <!-- sle note: [title] wires to an @Input-->
   <collapsible-well class="col-md-10">
@@ -11,7 +11,7 @@
     <div well-body>
       <!-- this content is now projected into the collapsible-well module-->
       <h6>{{session.presenter}}</h6>
-      <span>Duration: {{session.duration}}</span><br />
+      <span>Duration: {{session.duration | duration}}</span><br />
       <span>Level: {{session.level}}</span>
       <p>{{session.abstract}}</p>
     </div>

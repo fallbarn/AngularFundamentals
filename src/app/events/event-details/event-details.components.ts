@@ -9,13 +9,18 @@ import { IEvent, ISession } from '../shared';
     `
       .container {padding-left:20px; padding-right: 20px; }
       .event-image {height: 100px;}
-      a {cursor: pointer}
+      a {cursor: pointer;}
+      .btn {margin-right:5px;}
     `]
 })
  
 export class EventDetailsComponent {
   event: IEvent;
   addMode: boolean;
+  filterBy: string = 'all';
+
+
+
   constructor(private eventService: EventService, private route: ActivatedRoute) {
 
   }
