@@ -18,6 +18,7 @@ export class EventDetailsComponent {
   event: IEvent;
   addMode: boolean;
   filterBy: string = 'all';
+  sortBy: string = 'name';
 
 
 
