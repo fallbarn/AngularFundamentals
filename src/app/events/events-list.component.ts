@@ -11,16 +11,16 @@ import { IEvent } from './shared';
 
   // This is the HTLM associated with the component.
   template: `
-                <div>
-                  <h1>Upcoming Angular Events </h1>
-                  <hr />
-                  <div class="row">
-                    <div class="col-md-5" *ngFor ="let event of events">
-                      <event-thumbnail (click)="handleThumbnailClick(event.name)"  [event] = "event"> </event-thumbnail>
-                    </div>
-                  </div>
-                </div>
-              `
+        <div (click)="handleThumbnailClick(events[0])">
+          <h1>Upcoming Angular Events </h1>
+          <hr />
+          <div class="row" >
+            <div class="col-md-5" *ngFor ="let event of events">
+              <event-thumbnail [event]="event" > </event-thumbnail>
+            </div>
+          </div>
+        </div>
+      `
 })
 
 // SLE note: the attributes and methods of EventsList class
@@ -42,6 +42,7 @@ export class EventsListComponent implements OnInit { // OnInit is an interface.
   }
 
   handleThumbnailClick(eventName) {
+    console.log("Toastr");
     this.toastr.success(eventName);
   }
 }

@@ -20,8 +20,6 @@ export class EventDetailsComponent {
   filterBy: string = 'all';
   sortBy: string = 'name';
 
-
-
   constructor(private eventService: EventService, private route: ActivatedRoute) {
 
   }
