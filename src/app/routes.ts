@@ -1,12 +1,5 @@
-// sle note : gives a solid type to appRoutes so providing type checking.
 import { Routes } from '@angular/router'
-//import { EventDetailsComponent } from './events/event-details/event-details.components';
-//import { EventsListComponent } from './events/events-list.component';
-//import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
-//import { EventRouteActivator } from './events/event-details/event-route.activator.service';
-//import { EventListResolver } from './events/events-list.resolver'
-
 
 import {
   EventDetailsComponent,
@@ -18,7 +11,6 @@ import {
 } from './events/index'
 
 
-
 export const appRoutes: Routes = [
 
   { path: 'events', component: EventsListComponent, resolve: { events: EventListResolver } },
@@ -28,6 +20,6 @@ export const appRoutes: Routes = [
   // /events/1 or /events/foo
   // default route 
   { path: '', redirectTo: '/events', pathMatch: 'full' },
-  { path: 'user', loadChildren: './user/user.module#UserModule' },
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule)},
   { path: 'events/session/new', component: CreateSessionComponent }
 ]
