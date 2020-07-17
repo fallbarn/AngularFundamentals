@@ -5,7 +5,7 @@ import { NavBarComponent } from './nav//navbar.component';
 import { appRoutes } from './routes'
 import { Error404Component } from './errors/404.component'
 import { RouterModule } from '@angular/router';
-import { ToastrService } from './common/toastr.service';
+import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { EventsAppComponent } from './Events-app.component';
 import { AuthService } from './user/auth.service';
@@ -23,6 +23,8 @@ import {
   SessionListComponent,
   DurationPipe
 } from './events/index'
+
+declare let toastr: Toastr;
 
 @NgModule({
   declarations: [
@@ -47,7 +49,7 @@ import {
   // SLE NOTE: setup for dependency injection, so can be referenced in constructor.
   providers: [
     EventService,
-    ToastrService,
+    { provide: TOASTR_TOKEN, useValue: toastr },
     EventRouteActivator,
     AuthService,
     {

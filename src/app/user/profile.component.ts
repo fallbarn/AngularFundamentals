@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Inject } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router'
 import { IUser } from './user.model';
+import { TOASTR_TOKEN, Toastr } from '../common/toastr.service'
 
 /*
  * sle note: Authodox html (with css selector) styling 
@@ -33,13 +34,13 @@ export class ProfileComponent implements OnInit
   private lastNameCtr: FormControl;
   private user: IUser;
 
-  // sle note: using local variable here, instead of short hand privates in constructor. Must prepend with 'this.' in code
-  public authService: AuthService;
-  router: Router;
+  
 
-  constructor(authService: AuthService, router: Router) {
-    this.authService = authService;
-    this.router = router;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    @Inject(TOASTR_TOKEN) private toastr: Toastr) {
+   
   }
 
     // Angualar binds the following with the [formGroup]="profileForm" in the HTLM
@@ -60,7 +61,8 @@ export class ProfileComponent implements OnInit
     if (this.profileForm.valid) {
       // sle note: must your explicit this.firstName.value, when declaring explicit types.
       this.authService.UpdateCurrentUser(this.firstNameCtr.value, this.lastNameCtr.value);
-      this.router.navigate(['events']);
+      //this.router.navigate(['events']); sle note: replace with Toastr
+      this.toastr.success('Profile Saved');
     }
   }
 
