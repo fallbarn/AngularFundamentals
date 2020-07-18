@@ -1,18 +1,19 @@
-import { Injectable } from '@angular/core'
+import { Injectable, EventEmitter } from '@angular/core'
 import { Subject, Observable } from 'rxjs'
-import { IEvent } from './event.model';
+import { IEvent, ISession } from './event.model';
 
 @Injectable()
 export class EventService {
+
   //constructor(private http: HTTP) {}
   getEvents(): Observable<IEvent[]> {
-    let subject = new Subject <IEvent[]>();
+    let subject = new Subject<IEvent[]>();
     setTimeout(() => { subject.next(EVENTS); subject.complete(); }, 200);
     return subject;
   }
 
-  getEvent(id: number): IEvent{
-    return EVENTS.find(event=> event.id === id)
+  getEvent(id: number): IEvent {
+    return EVENTS.find(event => event.id === id)
   }
 
   saveEvent(event) {
@@ -25,6 +26,34 @@ export class EventService {
     let index = EVENTS.findIndex(x => x.id = event.id);
     EVENTS[index] = event;
   }
+
+    searchSessions(searchTerm: string) {
+
+      var term = searchTerm.toLowerCase();
+      var results: any[] = [];
+
+      EVENTS.forEach(event => {
+
+
+        var matchingSessions = event.sessions.filter(session => { return session.name.toLocaleLowerCase().indexOf(term) > -1; })
+
+        matchingSessions = matchingSessions.map((sessionAgregated: any) => {
+          sessionAgregated.eventiD = sessionAgregated.id; //sle note: a trick to agregate the session with a new attribute called eventId. (you can add to any objects on the fly. ISession is applied to give intellisence)
+          return sessionAgregated;
+        })
+
+        results = results.concat(matchingSessions);
+
+
+      });
+
+      let emitter = new EventEmitter(true);
+      setTimeout(() => { emitter.emit(results) }, 100); // sle note: setTimeout calls a function (no params)  after a set timeout value in milliseconds.
+
+      return emitter;
+
+  }
+
 }
 
 const EVENTS: IEvent[] = [
