@@ -47,3 +47,12 @@
     </div>
   </div>
 </div>
+
+<!-- sle note: remember: when confronted by a strange node name e.g. <simple-model>, angular is going to reference a component... -->
+<simple-modal title="Matching Sessions">
+  <div class="list-group">
+    <a class="list-group-item" *ngFor="let session of foundSessions" [routerLink]="['/events, session.Event']">
+      {{session.name}}
+    </a>
+  </div>
+</simple-modal>

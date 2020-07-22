@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit
     if (this.profileForm.valid) {
       // sle note: must your explicit this.firstName.value, when declaring explicit types.
       this.authService.UpdateCurrentUser(this.firstNameCtr.value, this.lastNameCtr.value);
-      //this.router.navigate(['events']); sle note: replace with Toastr
+      //this.router.navigate(['events']); //sle note: replace with Toastr
       this.toastr.success('Profile Saved');
     }
   }
