@@ -38,7 +38,12 @@
           <input type="text" class="form-control" placeholder="Search Sessions" [(ngModel)]="searchTerm" name="searchTerm">
         </div>
 
-        <button class="btn btn-default">
+        <!--
+          * a strange attribute means there will be a directive. i.e. here, modal-trigger
+          * a directive replaces the click event i.e. (click)='DoSomeThing()' NOT closely bound to a click function!.
+          * note: "searchResult" is a parameter passed to the directive.
+        -->
+        <button class="btn btn-default" modal-trigger="searchResults">
           Search
         </button>
 
@@ -48,10 +53,10 @@
   </div>
 </div>
 
-<!-- sle note: remember: when confronted by a strange node name e.g. <simple-model>, angular is going to reference a component... -->
-<simple-modal title="Matching Sessions">
+<!-- sle note: remember: when confronted by a strange node name  e.g. <simple-model>, angular is going to reference a COMPONENT... -->
+<simple-modal elementId="searchResults" title="Matching Sessions">
   <div class="list-group">
-    <a class="list-group-item" *ngFor="let session of foundSessions" [routerLink]="['/events, session.Event']">
+    <a class="list-group-item" *ngFor="let session of foundSessions" [routerLink]="['/events', session.eventId]">
       {{session.name}}
     </a>
   </div>

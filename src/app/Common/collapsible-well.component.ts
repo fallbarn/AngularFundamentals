@@ -1,7 +1,7 @@
 import {Input, Component } from '@angular/core';
 
 /* sle note: the template below is
- * filled with content embedded in 'collaspible-will in
+ * filled with content embedded in 'collaspible-well in
  * the parent session-list.component module.
  */
 @Component({

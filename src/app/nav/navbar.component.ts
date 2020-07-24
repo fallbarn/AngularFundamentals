@@ -27,7 +27,7 @@ export class NavBarComponent {
     // sle note: the subject means the javascript function returns immediately. The data arrives in foundSessions whenever. The logic must cope with this scenario.
     this.EVENTS.searchSessions(searchTerm).subscribe(sessions => { this.foundSessions = sessions; });
 
-    setTimeout(() => { console.log(this.foundSessions); }, 200);
+    //setTimeout(() => { console.log(this.foundSessions); }, 200);
     
 
   }

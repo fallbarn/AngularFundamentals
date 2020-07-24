@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core"
 import { EventService } from "../shared/event-services";
 
 //
-// sle note: This is a service. Implements the canActive interface. It as injected both the existing EventService & Router (service)
+// sle note: This is a service. Implements the canActive interface. It is injected into both the existing EventService & Router (service)
 //            it is added to the route definition to test if the Id is a valid number.
 //
 @Injectable() // means it can be instantiated and passed into any constructors that define it.
