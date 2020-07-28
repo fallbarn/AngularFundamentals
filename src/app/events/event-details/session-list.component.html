@@ -1,8 +1,8 @@
 <div class="row" *ngFor="let session of visibleSessions">
 
     <!-- sle note: [title] wires to an @Input-->
-  <collapsible-well class="col-md-10">
-    <!-- sle note: the below html is projected into...-->
+  <collapsible-well title="{{session.name}}" class="col-md-10">
+    <!-- sle note: the below html is projected into the ng-content element in the collapsible-well component...-->
     <div well-title>
       {{session.name}}
       <i *ngIf="session.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>

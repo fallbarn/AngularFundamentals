@@ -10,6 +10,8 @@ import {Input, Component } from '@angular/core';
     <div (click)="toggleContent()" class="well pointable">
 
       <h4>
+        sle note: Legacy {{title}}
+
         <ng-content select="[well-title]"></ng-content>
       </h4>
 

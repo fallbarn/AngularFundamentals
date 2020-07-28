@@ -7,9 +7,9 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li>
-          <a [routerLink] ="['/events']" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active">All Events</a>
+          <a [routerLink]="['/events']" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active">All Events</a>
         </li>
-        <li><a [routerLink] ="['/events/new']" href="" routerLinkActive="active">Create Event</a> </li>
+        <li><a [routerLink]="['/events/new']" href="" routerLinkActive="active">Create Event</a> </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             Events
@@ -27,7 +27,7 @@
           <li>
             <!-- sle note: nav bar async-auto picks up changes made to the auth service else where in app -->
             <a *ngIf="!auth.isAuthenticated()" [routerLink]="['user/login']">Login</a>
-            <a *ngIf="auth.isAuthenticated()" [routerLink] ="['user/profile']">Welcome: {{auth.currentUser.firstName}}</a>
+            <a *ngIf="auth.isAuthenticated()" [routerLink]="['user/profile']">Welcome: {{auth.currentUser.firstName}}</a>
           </li>
         </ul>
       </div>
@@ -39,6 +39,9 @@
         </div>
 
         <!--
+
+        sle note:
+
           * a strange attribute means there will be a directive. i.e. here, modal-trigger
           * a directive replaces the click event i.e. (click)='DoSomeThing()' NOT closely bound to a click function!.
           * note: "searchResult" is a parameter passed to the directive.
@@ -53,9 +56,19 @@
   </div>
 </div>
 
-<!-- sle note: remember: when confronted by a strange node name  e.g. <simple-model>, angular is going to reference a COMPONENT... -->
+<!--
+
+  sle note: remember: when confronted by a strange node name  e.g. <simple-model>, angular is going to reference a COMPONENT..., following attribs: elementId & title are passing in as @Input parameters
+
+  This HTml will be replaced by the html in the simple-modal component. However the <div class="list-group"... will be passed in to a ng-content element.
+
+  It will be displayed programatically by the ' modal-trigger="searchResults" ' Directive in <button class='btn btn-default'... just above.
+
+-->
 <simple-modal elementId="searchResults" title="Matching Sessions">
   <div class="list-group">
+
+    <!-- sle note:  This anchor is repeated with the url setup by [routerlink] to the target. e.g. url= "/events/1" -->
     <a class="list-group-item" *ngFor="let session of foundSessions" [routerLink]="['/events', session.eventId]">
       {{session.name}}
     </a>
