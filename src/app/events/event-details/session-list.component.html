@@ -1,20 +1,30 @@
 <div class="row" *ngFor="let session of visibleSessions">
 
+  <div *ngIf="auth.isAuthenticated()">
+    <div class="col-md-1">
+      <!-- (vote) is an Out parameter, [count] and In parameter ..., they are passed into the 'upvote' component.-->
+      <upvote (vote)="toggleVote(session)" [count]="session.voters.length" [voted]="userHasVoted(session)">
+      </upvote>
+    </div>
+  </div>
+
+  <div class="col-md-10">
     <!-- sle note: [title] wires to an @Input-->
-  <collapsible-well title="{{session.name}}" class="col-md-10">
-    <!-- sle note: the below html is projected into the ng-content element in the collapsible-well component...-->
-    <div well-title>
-      {{session.name}}
-      <i *ngIf="session.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
-    </div>
+    <collapsible-well title="{{session.name}}" class="col-md-10">
+      <!-- sle note: the below html is projected into the ng-content element in the collapsible-well component...-->
+      <div well-title>
+        {{session.name}}
+        <i *ngIf="session.voters.length > 3" class="glyphicon glyphicon-fire" style="color:red"></i>
+      </div>
 
-    <div well-body>
-      <!-- this content is now projected into the collapsible-well module-->
-      <h6>{{session.presenter}}</h6>
-      <span>Duration: {{session.duration | duration}}</span><br />
-      <span>Level: {{session.level}}</span>
-      <p>{{session.abstract}}</p>
-    </div>
+      <div well-body>
+        <!-- this content is now projected into the collapsible-well module-->
+        <h6>{{session.presenter}}</h6>
+        <span>Duration: {{session.duration | duration}}</span><br />
+        <span>Level: {{session.level}}</span>
+        <p>{{session.abstract}}</p>
+      </div>
 
-  </collapsible-well>
+    </collapsible-well>
+  </div>
 </div>

@@ -25,13 +25,17 @@ import { JQ_TOKEN } from './jquery-service'
 export class SimpleModalComponent {
   @Input() title: string;
   @Input() elementId: string; // sle note: this is used to bind the id of the modal box in the template above.
+  @Input() closeOption: string; 
   @ViewChild('modalcontainer') containerEl: ElementRef; // sle note: looks in html for the adhoc ref #modalcontainer (saves the effort of drilling down to find the actual elementId)
 
   constructor(@Inject(JQ_TOKEN) private $: any) {}
 
   closeModal() {
    // console.log("closeModal");
-    this.$(this.containerEl.nativeElement).modal('hide');
+
+    if (this.closeOption.toLowerCase() === 'true') {
+      this.$(this.containerEl.nativeElement).modal('hide');
+    }
   }
 
 }
