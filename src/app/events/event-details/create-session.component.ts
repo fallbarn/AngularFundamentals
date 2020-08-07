@@ -49,12 +49,15 @@ export class CreateSessionComponent implements OnInit {
 
   // Angualar binds the following with the [formGroup]="newSessionForm" in the HTLM
   ngOnInit() {
+
+    // sle note: validator are set up like this
     this.name = new FormControl('', [Validators.required]);
     this.presenter = new FormControl('', [Validators.required]);
     this.duration = new FormControl('', [Validators.required]);
     this.level = new FormControl('', [Validators.required]);
     this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), this.restrictedWords]);
 
+    // sle note: then the validators must be assigned to the relavant form controls
     this.newSessionForm = new FormGroup(
       {
         name: this.name,

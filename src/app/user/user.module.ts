@@ -11,6 +11,7 @@ import { LoginComponent} from './login.component'
   imports: [
     CommonModule,
     FormsModule,
+    // sle note: first entery point of application. All webpages fan off from the routing table.
     RouterModule.forChild(userRoutes),
     ReactiveFormsModule
   ],

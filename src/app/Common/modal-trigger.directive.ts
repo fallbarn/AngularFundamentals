@@ -1,7 +1,7 @@
 import { Directive, OnInit, Inject, ElementRef, Input } from '@angular/core'
 import { JQ_TOKEN } from './jquery-service'
 
-// sle note: called from an attribute (not an element) so is in square brackets i.e. [modal-trigger.]
+// sle note: a directive is called from an attribute (not an element) so is in square brackets i.e. [modal-trigger.]
 @Directive({
   selector: '[modal-trigger]'
 })

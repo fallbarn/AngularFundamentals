@@ -20,6 +20,7 @@ export const appRoutes: Routes = [
   // /events/1 or /events/foo
   // default route 
   { path: '', redirectTo: '/events', pathMatch: 'full' },
+  // sle note: 'User' is a demonstration of now you can spin-off further app-modules (in this case user-module) with there own routing logic 
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule)},
   { path: 'events/session/new', component: CreateSessionComponent }
 ]

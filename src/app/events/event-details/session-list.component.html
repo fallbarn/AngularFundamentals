@@ -1,5 +1,5 @@
 <div class="row" *ngFor="let session of visibleSessions">
-
+  <!--sle note: ngIf binding to the injected 'auth' service-->
   <div *ngIf="auth.isAuthenticated()">
     <div class="col-md-1">
       <!-- (vote) is an Out parameter, [count] and In parameter ..., they are passed into the 'upvote' component.-->

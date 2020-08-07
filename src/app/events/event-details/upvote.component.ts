@@ -20,6 +20,7 @@ import { Component, Output, Input, EventEmitter } from '@angular/core'
 
 export class UpvoteComponent {
   @Input() count: number;
+  // sle note: A special variation input parameter! The input value is passed as a parameter to a function called voted.
   @Input() set voted(hasSomeVotes) { this.iconColor =  (hasSomeVotes) ? 'red' : 'white';  }; // if val is true then red else white
   @Output() vote = new EventEmitter();
 

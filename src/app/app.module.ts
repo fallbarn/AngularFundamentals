@@ -27,7 +27,8 @@ import {
   SessionListComponent,
   DurationPipe,
   UpvoteComponent,
-  VoterService
+  VoterService,
+  LocationValidator
 } from './events/index'
 
 declare let toastr: Toastr;
@@ -48,10 +49,12 @@ declare let jQuery;
     DurationPipe,
     SimpleModalComponent,
     ModalTriggerDirective,
-    UpvoteComponent
+    UpvoteComponent,
+    LocationValidator
   ],
   imports: [
     BrowserModule,
+    // sle note: first entery point of application. All webpages fan off from the routing table.
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule
