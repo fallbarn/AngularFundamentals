@@ -37,8 +37,9 @@ export class EventService {
 
         var matchingSessions = event.sessions.filter(session => { return session.name.toLocaleLowerCase().indexOf(term) > -1; })
 
+        //sle note: a way to aggregate each element of the session with a new attribute called eventId. (you can add to any objects on the fly. ISession is applied to give intellisense)
         matchingSessions = matchingSessions.map((sessionAgregated: any) => {
-          sessionAgregated.eventId = event.id; //sle note: a trick to agregate the session with a new attribute called eventId. (you can add to any objects on the fly. ISession is applied to give intellisence)
+          sessionAgregated.eventId = event.id; // creates a new attribute call eventId (can't do this in a compiled language like C#)
           return sessionAgregated;
         })
 
